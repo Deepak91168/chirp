@@ -2,4 +2,5 @@
 /.env
 /.pnp
 /.next/
-/next.config.js
+next.config.js
+.vscode

@@ -1,5 +1,13 @@
 import { useState, useEffect } from "react";
 
+const convertJSONArray_TO_objArray = (jsonArray) => {
+  const objArray = [];
+  jsonArray.forEach((jsonObject) => {
+    objArray.push(JSON.parse(jsonObject));
+  });
+  return objArray;
+};
+
 const Chat = () => {
   const [socket, setSocket] = useState(null);
   const [message, setMessage] = useState("");
@@ -24,23 +32,31 @@ const Chat = () => {
       socket.onmessage = (event) => {
         console.log("Message received: ");
         const receivedMessage = event.data;
+        const stringWithoutSingleQuotes = receivedMessage.replace(/'/g, '"');
+        // console.log("stringWithoutSingleQuotes: ", stringWithoutSingleQuotes);
+        const formattedMessage = JSON.parse(stringWithoutSingleQuotes);
+        console.log("jsonArray: ", formattedMessage);
         setReceivedMessages((prevMessages) => [
           ...prevMessages,
-          receivedMessage,
+          formattedMessage,
         ]);
       };
     }
   }, [socket]);
-
+  //   console.log(receivedMessages);
   const sendMessage = (e) => {
     e.preventDefault();
+    console.log("Sending message: ", message);
+    const formattedMessage = {
+      sender_email: userEmail,
+      recipient_email: recipientEmail,
+      content: message,
+    };
     if (socket && message.trim() !== "" && recipientEmail.trim() !== "") {
-      const formattedMessage = `To:${recipientEmail}:${message}`;
-      socket.send(formattedMessage);
-      //   setMessage(""); // Clear the message input field
+      socket.send(JSON.stringify(formattedMessage));
+      setMessage("");
     }
   };
-
   return (
     <div>
       <h1>User is {userEmail}</h1>
@@ -54,7 +70,11 @@ const Chat = () => {
             placeholder="Sender's Email"
           />
         </div>
-        <button type="submit" className="border-2 p-4" onClick={makeConnection}>
+        <button
+          type="submit"
+          className="border-2 p-4 pt-2 pb-2"
+          onClick={makeConnection}
+        >
           make connection
         </button>
       </form>
@@ -69,22 +89,31 @@ const Chat = () => {
             placeholder="Recipient's Email"
           />
         </div>
-        <div>
+        <div className="">
           <input
             type="text"
             value={message}
+            className="border-2"
             onChange={(e) => setMessage(e.target.value)}
             placeholder="Type a message..."
           />
-          <button onClick={sendMessage}>Send</button>
+          <button
+            className="btn btn-neutral w-32 rounded-lg"
+            onClick={sendMessage}
+          >
+            Send
+          </button>
         </div>
       </form>
 
       <div className="text-center mt-4 border-2 p-4">
         <h2>Received Messages</h2>
         <ul>
-          {receivedMessages.map((msg, index) => (
-            <li key={index}>{msg}</li>
+          {receivedMessages.map((message, index) => (
+            <li key={index} className="border-2 p-2">
+              <div className="text-[12px]" >Sent By {message.sender_email}</div>
+              <div>{message.content}</div>
+            </li>
           ))}
         </ul>
       </div>

@@ -72,7 +72,7 @@ const Chat = () => {
         </div>
         <button
           type="submit"
-          className="border-2 p-4 pt-2 pb-2"
+          className="border-2 btn btn-neutral btn-sm"
           onClick={makeConnection}
         >
           make connection

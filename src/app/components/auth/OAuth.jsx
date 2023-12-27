@@ -1,6 +1,6 @@
-'use client';
+"use client";
 import React from "react";
-import app from "../firebase"
+import app from "../../firebase";
 import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 const OAuth = () => {
   // console.log(app);
@@ -14,7 +14,15 @@ const OAuth = () => {
       console.log(err);
     }
   };
-  return <button onClick={handleAuth}>OAuth</button>;
+  return (
+    <button
+      type="button"
+      className="btn btn-outline btn-primary w-full"
+      onClick={handleAuth}
+    >
+      Continue with Google
+    </button>
+  );
 };
 
 export default OAuth;

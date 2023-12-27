@@ -1,12 +1,6 @@
+'use client';
 import { useState, useEffect } from "react";
-
-const convertJSONArray_TO_objArray = (jsonArray) => {
-  const objArray = [];
-  jsonArray.forEach((jsonObject) => {
-    objArray.push(JSON.parse(jsonObject));
-  });
-  return objArray;
-};
+import axios from "axios";
 
 const Chat = () => {
   const [socket, setSocket] = useState(null);
@@ -33,9 +27,8 @@ const Chat = () => {
         console.log("Message received: ");
         const receivedMessage = event.data;
         const stringWithoutSingleQuotes = receivedMessage.replace(/'/g, '"');
-        // console.log("stringWithoutSingleQuotes: ", stringWithoutSingleQuotes);
         const formattedMessage = JSON.parse(stringWithoutSingleQuotes);
-        console.log("jsonArray: ", formattedMessage);
+        console.log("Received Message!: ", formattedMessage);
         setReceivedMessages((prevMessages) => [
           ...prevMessages,
           formattedMessage,
@@ -43,7 +36,6 @@ const Chat = () => {
       };
     }
   }, [socket]);
-  //   console.log(receivedMessages);
   const sendMessage = (e) => {
     e.preventDefault();
     console.log("Sending message: ", message);
@@ -57,6 +49,20 @@ const Chat = () => {
       setMessage("");
     }
   };
+
+  useEffect(() => {
+    const getChatHistory = async () => {
+      const response = await axios.get(
+        `http://localhost:8000/chat/get-chat-history?sender_email=${userEmail}&recipient_email=${recipientEmail}`
+      );
+      console.log(response.data);
+      setReceivedMessages(response.data);
+    };
+    getChatHistory();
+  }, [userEmail,recipientEmail]);
+
+
+
   return (
     <div>
       <h1>User is {userEmail}</h1>
@@ -111,11 +117,19 @@ const Chat = () => {
         <ul>
           {receivedMessages.map((message, index) => (
             <li key={index} className="border-2 p-2">
-              <div className="text-[12px]" >Sent By {message.sender_email}</div>
+              <div className="text-[12px]">Sent By {message.sender_email}</div>
               <div>{message.content}</div>
             </li>
           ))}
         </ul>
+      </div>
+      <div>
+        <button
+          className="btn btn-neutral w-32 rounded-lg"
+          // onClick={getChatHistory}
+        >
+          Get Chat History
+        </button>
       </div>
     </div>
   );

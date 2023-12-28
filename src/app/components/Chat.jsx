@@ -1,7 +1,8 @@
-'use client';
+"use client";
 import { useState, useEffect } from "react";
 import axios from "axios";
-
+import NavBar from "./common/NavBar";
+import { BiSend } from "react-icons/bi";
 const Chat = () => {
   const [socket, setSocket] = useState(null);
   const [message, setMessage] = useState("");
@@ -59,14 +60,32 @@ const Chat = () => {
       setReceivedMessages(response.data);
     };
     getChatHistory();
-  }, [userEmail,recipientEmail]);
-
-
+  }, [userEmail, recipientEmail]);
 
   return (
     <div>
+      <div>
+        <NavBar />
+      </div>
       <h1>User is {userEmail}</h1>
-      <form action="" className="p-4 border-2 text-center">
+
+      <div className="bg-[#444444] h-24 rounded-lg"></div>
+      <div className="w-full rounded-lg mt-2 flex items-center">
+        <textarea
+          name="send-message"
+          placeholder="Type a message"
+          id="send-message"
+          cols="30"
+          rows="1"
+          className="w-full p-4 rounded-lg outline-none"
+        />
+        <button type="button" className="bg-green-500 p-4 text-white">
+          <BiSend className=" text-2xl" />
+        </button>
+        {/* <button className="p-4 bg-green-500 text-black">Send</button> */}
+      </div>
+
+      {/* <form action="" className="p-4 border-2 text-center">
         <div>
           <label>Sender&lsquo;s Email:</label>
           <input
@@ -83,9 +102,9 @@ const Chat = () => {
         >
           make connection
         </button>
-      </form>
+      </form> */}
 
-      <form action="" className="p-4 mt-4 border-2 text-center">
+      {/* <form action="" className="p-4 mt-4 border-2 text-center">
         <div>
           <label>Recipient&lsquo;s Email:</label>
           <input
@@ -110,9 +129,9 @@ const Chat = () => {
             Send
           </button>
         </div>
-      </form>
+      </form> */}
 
-      <div className="text-center mt-4 border-2 p-4">
+      {/* <div className="text-center mt-4 border-2 p-4">
         <h2>Received Messages</h2>
         <ul>
           {receivedMessages.map((message, index) => (
@@ -122,15 +141,15 @@ const Chat = () => {
             </li>
           ))}
         </ul>
-      </div>
-      <div>
+      </div> */}
+      {/* <div>
         <button
           className="btn btn-neutral w-32 rounded-lg"
           // onClick={getChatHistory}
         >
           Get Chat History
         </button>
-      </div>
+      </div> */}
     </div>
   );
 };

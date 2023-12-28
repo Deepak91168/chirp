@@ -7,7 +7,7 @@ module.exports = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   daisyui: {
-    themes: ["nord", "synthwave", "lofi", "luxury"],
+    themes: ["coffee"],
   },
   plugins: [daisyui],
 };

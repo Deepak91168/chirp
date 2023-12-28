@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import NavBar from "./common/NavBar";
+import { MdOutlineEmojiEmotions } from "react-icons/md";
 import { BiSend } from "react-icons/bi";
 const Chat = () => {
   const [socket, setSocket] = useState(null);
@@ -63,28 +64,37 @@ const Chat = () => {
   }, [userEmail, recipientEmail]);
 
   return (
-    <div>
+    <div className="">
       <div>
         <NavBar />
       </div>
       <h1>User is {userEmail}</h1>
+      <div className="border-red-500 relative h-[90vh]">
+        <div className="h-[80vh] rounded-lg overflow-y-auto border-red-500 p-4">
 
-      <div className="bg-[#444444] h-24 rounded-lg"></div>
-      <div className="w-full rounded-lg mt-2 flex items-center">
-        <textarea
-          name="send-message"
-          placeholder="Type a message"
-          id="send-message"
-          cols="30"
-          rows="1"
-          className="w-full p-4 rounded-lg outline-none"
-        />
-        <button type="button" className="bg-green-500 p-4 text-white">
-          <BiSend className=" text-2xl" />
-        </button>
-        {/* <button className="p-4 bg-green-500 text-black">Send</button> */}
+        </div>
+        <div className="w-full bg-gray-900 p-2 px-4 rounded-lg mt-2 flex items-center absolute bottom-4">
+          <div>
+            <MdOutlineEmojiEmotions className="text-2xl cursor-pointer hover:text-green-600 transition ease-in-out duration-300" />
+          </div>
+          <input
+            type="text"
+            name="send-message"
+            placeholder="Type a message"
+            id="send-message"
+            cols="30"
+            rows="1"
+            className="w-full p-4 rounded-lg outline-none mx-4"
+          />
+          <button
+            type="button"
+            className="bg-green-500 hover:bg-green-600 p-4 rounded-full text-white transition ease-in-out duration-300"
+          >
+            <BiSend className=" text-2xl" />
+          </button>
+          {/* <button className="p-4 bg-green-500 text-black">Send</button> */}
+        </div>
       </div>
-
       {/* <form action="" className="p-4 border-2 text-center">
         <div>
           <label>Sender&lsquo;s Email:</label>

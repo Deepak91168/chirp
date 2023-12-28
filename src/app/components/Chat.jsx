@@ -65,37 +65,35 @@ const Chat = () => {
 
   return (
     <div className="">
-      <div>
-        <NavBar />
-      </div>
-      <h1>User is {userEmail}</h1>
-      <div className="border-red-500 relative h-[90vh]">
-        <div className="h-[80vh] rounded-lg overflow-y-auto border-red-500 p-4">
-
+      <div className=" w-full">
+        <div>
+          <NavBar />
         </div>
-        <div className="w-full bg-gray-900 p-2 px-4 rounded-lg mt-2 flex items-center absolute bottom-4">
-          <div>
-            <MdOutlineEmojiEmotions className="text-2xl cursor-pointer hover:text-green-600 transition ease-in-out duration-300" />
+        <h1>User is {userEmail}</h1>
+        <div className="border-red-500 relative h-[90vh]">
+          <div className="h-[80vh] rounded-lg overflow-y-auto border-red-500 p-4"></div>
+          <div className="w-full bg-gray-700 p-2 px-4 rounded-lg mt-2 flex items-center absolute bottom-4">
+            <div>
+              <MdOutlineEmojiEmotions className="text-2xl cursor-pointer hover:text-green-600 transition ease-in-out duration-300" />
+            </div>
+            <textarea
+              type="text"
+              name="send-message"
+              placeholder="Type a message"
+              id="send-message"
+              rows="1"
+              className="w-full p-4 rounded-lg outline-none mx-4"
+            />
+            <button
+              type="button"
+              className="bg-green-500 hover:bg-green-600 p-4 rounded-full text-white transition ease-in-out duration-300"
+            >
+              <BiSend className=" text-2xl" />
+            </button>
+            {/* <button className="p-4 bg-green-500 text-black">Send</button> */}
           </div>
-          <input
-            type="text"
-            name="send-message"
-            placeholder="Type a message"
-            id="send-message"
-            cols="30"
-            rows="1"
-            className="w-full p-4 rounded-lg outline-none mx-4"
-          />
-          <button
-            type="button"
-            className="bg-green-500 hover:bg-green-600 p-4 rounded-full text-white transition ease-in-out duration-300"
-          >
-            <BiSend className=" text-2xl" />
-          </button>
-          {/* <button className="p-4 bg-green-500 text-black">Send</button> */}
         </div>
-      </div>
-      {/* <form action="" className="p-4 border-2 text-center">
+        {/* <form action="" className="p-4 border-2 text-center">
         <div>
           <label>Sender&lsquo;s Email:</label>
           <input
@@ -114,7 +112,7 @@ const Chat = () => {
         </button>
       </form> */}
 
-      {/* <form action="" className="p-4 mt-4 border-2 text-center">
+        {/* <form action="" className="p-4 mt-4 border-2 text-center">
         <div>
           <label>Recipient&lsquo;s Email:</label>
           <input
@@ -141,7 +139,7 @@ const Chat = () => {
         </div>
       </form> */}
 
-      {/* <div className="text-center mt-4 border-2 p-4">
+        {/* <div className="text-center mt-4 border-2 p-4">
         <h2>Received Messages</h2>
         <ul>
           {receivedMessages.map((message, index) => (
@@ -152,7 +150,7 @@ const Chat = () => {
           ))}
         </ul>
       </div> */}
-      {/* <div>
+        {/* <div>
         <button
           className="btn btn-neutral w-32 rounded-lg"
           // onClick={getChatHistory}
@@ -160,6 +158,7 @@ const Chat = () => {
           Get Chat History
         </button>
       </div> */}
+      </div>
     </div>
   );
 };

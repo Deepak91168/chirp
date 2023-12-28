@@ -20,7 +20,28 @@ const Drawer = () => {
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <ul className="menu p-4 w-60 sm:w-[350px] lg:w-[450px] xl:w-[500px] min-h-full bg-base-200 text-base-content">
+        <ul className="menu p-4 w-60 sm:w-[350px] lg:w-[450px] xl:w-[500px] min-h-full bg-base-200 text-base-content overflow-y-auto">
+          <ContactCard />
+          <ContactCard />
+          <ContactCard />
+          <ContactCard />
+          <ContactCard />
+          <ContactCard />
+          <ContactCard />
+          <ContactCard />
+          <ContactCard />
+          <ContactCard />
+          <ContactCard />
+          <ContactCard />
+          <ContactCard />
+          <ContactCard />
+          <ContactCard />
+          <ContactCard />
+          <ContactCard />
+          <ContactCard />
+          <ContactCard />
+          <ContactCard />
+          <ContactCard />
           <ContactCard />
           <ContactCard />
           <ContactCard />

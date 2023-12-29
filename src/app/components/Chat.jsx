@@ -64,14 +64,13 @@ const Chat = () => {
   }, [userEmail, recipientEmail]);
 
   return (
-    <div className="">
+    <div className="w-full">
       <div className=" w-full">
         <div>
           <NavBar />
         </div>
-        <h1>User is {userEmail}</h1>
-        <div className="border-red-500 relative h-[90vh]">
-          <div className="h-[80vh] rounded-lg overflow-y-auto border-red-500 p-4"></div>
+        <div className="border-red-500 relative h-[94vh]">
+          <div className="h-[84vh] rounded-lg overflow-y-auto border-red-500 p-4"></div>
           <div className="w-full bg-gray-700 p-2 px-4 rounded-lg mt-2 flex items-center absolute bottom-4">
             <div>
               <MdOutlineEmojiEmotions className="text-2xl cursor-pointer hover:text-green-600 transition ease-in-out duration-300" />

@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 const NavBar = () => {
   return (
-    <div className="navbar mx-auto mt-4  bg-[#3F0071] rounded-lg">
+    <div className="navbar mx-auto py-2 bg-[#3F0071] ">
       <div className="flex-none border-white">
         <div className="dropdown dropdown-end">
           <div

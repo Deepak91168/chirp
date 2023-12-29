@@ -3,7 +3,10 @@ import Image from "next/image";
 const ContactCard = () => {
   return (
     <>
-      <button type="button" className="flex items-center p-2 rounded-lg bg-[#3F0071] shadow-md mb-2 hover:bg-[#150E56] cursor-pointer transition ease-in-out duration-300 outline-none">
+      <button
+        type="button"
+        className="flex items-center p-4 px-4 bg-[#3F0071] shadow-md border-green-800 border-b-[0.5px] hover:bg-[#150E56] cursor-pointer transition ease-in-out duration-300 outline-none"
+      >
         <div className="flex-shrink-0 mr-4">
           <Image
             src={
@@ -14,7 +17,6 @@ const ContactCard = () => {
             className="rounded-full"
             alt="avatar"
           />
-          {/* <img class="h-10 w-10 rounded-full" src="avatar.jpg" alt="Avatar"> */}
         </div>
         <div>
           <h4 className="font-semibold text-[#5B8FB9]">John Doe</h4>

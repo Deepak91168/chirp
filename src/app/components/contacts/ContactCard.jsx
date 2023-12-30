@@ -5,7 +5,7 @@ const ContactCard = () => {
     <>
       <button
         type="button"
-        className="flex items-center p-4 px-4 bg-[#3F0071] shadow-md border-green-800 border-b-[0.5px] hover:bg-[#150E56] cursor-pointer transition ease-in-out duration-300 outline-none"
+        className="flex items-center p-4 px-4 bg-[#3F0071] shadow-md border-yellow-800 border-b-[0.5px] hover:bg-[#150E56] cursor-pointer transition ease-in-out duration-300 outline-none"
       >
         <div className="flex-shrink-0 mr-4">
           <Image

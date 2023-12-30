@@ -69,8 +69,31 @@ const Chat = () => {
         <div>
           <NavBar />
         </div>
-        <div className="border-red-500 relative h-[94vh]">
-          <div className="h-[84vh] rounded-lg overflow-y-auto border-red-500 p-4"></div>
+        <div className="border-red-500 relative h-[94vh] ml-2 mr-2">
+          <div className="h-[84vh] rounded-lg overflow-y-auto border-red-500 p-4">
+            <div>
+              <div class="chat chat-start">
+                <div class="chat-bubble chat-bubble-primary">
+                  message.content
+                </div>
+              </div>
+              {receivedMessages.map((message, index) => (
+                <li key={index} className="border-2 p-2">
+                  <div class="chat chat-start">
+                    <div class="chat-bubble chat-bubble-primary">
+                      {message.content}
+                    </div>
+                  </div>
+                </li>
+              ))}
+
+              <div class="chat chat-end">
+                <div class="chat-bubble chat-bubble-warning">
+                  To be on the Council at your age.
+                </div>
+              </div>
+            </div>
+          </div>
           <div className="w-full bg-gray-700 p-2 px-4 rounded-lg mt-2 flex items-center absolute bottom-4">
             <div>
               <MdOutlineEmojiEmotions className="text-2xl cursor-pointer hover:text-green-600 transition ease-in-out duration-300" />
@@ -84,6 +107,7 @@ const Chat = () => {
               className="w-full p-4 rounded-lg outline-none mx-4"
             />
             <button
+            onClick={sendMessage}
               type="button"
               className="bg-green-500 hover:bg-green-600 p-4 rounded-full text-white transition ease-in-out duration-300"
             >
@@ -92,7 +116,7 @@ const Chat = () => {
             {/* <button className="p-4 bg-green-500 text-black">Send</button> */}
           </div>
         </div>
-        {/* <form action="" className="p-4 border-2 text-center">
+         <form action="" className="p-4 border-2 text-center">
         <div>
           <label>Sender&lsquo;s Email:</label>
           <input
@@ -109,7 +133,7 @@ const Chat = () => {
         >
           make connection
         </button>
-      </form> */}
+      </form> 
 
         {/* <form action="" className="p-4 mt-4 border-2 text-center">
         <div>

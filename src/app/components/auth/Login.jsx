@@ -3,16 +3,14 @@ import React from "react";
 import OAuth from "./OAuth";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
 import {
-  signInStart,
   signInSuccess,
   signInFailure,
-} from "@/app/redux/user/userSlice";
-import { useSelector, useDispatch } from "react-redux";
-
+  signInStart,
+} from "../../redux/user/userSlice";
 const Login = () => {
-  // const dispatch = useDispatch();
-  // const { error, loading } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
   const [fromData, setFormData] = useState({
     email: "",
@@ -25,7 +23,7 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      // dispatch(signInStart());
+      dispatch(signInStart());
       const response = await axios.post(
         "http://localhost:8000/auth/login",
         fromData,
@@ -35,16 +33,16 @@ const Login = () => {
       );
       if (response.data.status_code !== "200") {
         console.log(response.data.detail);
-        // dispatch(signInFailure(response.data.detail));
+        dispatch(signInFailure(response.data.detail));
       }
       console.log(response.data);
-      // dispatch(signInSuccess(response.data));
+      dispatch(signInSuccess(response.data));
     } catch (error) {
       console.log(error);
-      // dispatch(signInFailure(error));
+      dispatch(signInFailure(error));
     }
   };
-  // console.log("currentUser", currentUser);
+
   return (
     <div className="mt-16 max-w-xl mx-auto  pt-8">
       <div className="text-center font-bold text-xl">Login</div>
@@ -84,7 +82,7 @@ const Login = () => {
             </label>
 
             <div className="text-[12px] mt-4">
-              <a href="/sign-up" className="link link-primary">
+              <a href="/auth/sign-up" className="link link-primary">
                 Create an account?
               </a>
             </div>

@@ -1,7 +1,36 @@
 "use client";
 import React from "react";
 import OAuth from "./OAuth";
+import axios from "axios";
+import { useState, useEffect } from "react";
 const Register = () => {
+  const [fromData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    contacts: [],
+  });
+
+  const handleChange = (e) => {
+    setFormData({ ...fromData, [e.target.name]: e.target.value });
+  };
+
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(
+        "http://localhost:8000/auth/sign-up",
+        fromData,
+        {
+          withCredentials: true,
+        }
+      );
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="mt-16 max-w-xl mx-auto  pt-8">
       <div className="text-center font-bold text-xl">Register</div>
@@ -15,6 +44,9 @@ const Register = () => {
               </div>
               <input
                 type="text"
+                name="name"
+                id-="name"
+                onChange={handleChange}
                 placeholder="Full Name"
                 className="input input-bordered w-full bg-slate-100"
               />
@@ -27,6 +59,9 @@ const Register = () => {
               </div>
               <input
                 type="email"
+                name="email"
+                id="email"
+                onChange={handleChange}
                 placeholder="example@gmail.com"
                 className="input input-bordered w-full bg-slate-100 "
               />
@@ -38,18 +73,27 @@ const Register = () => {
                 {/* <span className="label-text-alt">Top Right label</span> */}
               </div>
               <input
+                name="password"
+                id="password"
+                onChange={handleChange}
                 type="password"
                 className="input input-bordered w-full bg-slate-100 "
               />
             </label>
 
             <div className="text-[12px] mt-4">
-              <a href="/sign-up" className="link link-primary">
+              <a href="/auth/sign-in" className="link link-primary">
                 Create an account?
               </a>
             </div>
 
-            <button className="btn mt-4 btn-primary w-full">Register</button>
+            <button
+              type="submit"
+              onClick={handleRegister}
+              className="btn mt-4 btn-primary w-full"
+            >
+              Register
+            </button>
             <div className="text-center mt-1 mb-1 text-sm">or</div>
             <OAuth />
           </div>

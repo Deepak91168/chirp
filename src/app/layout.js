@@ -8,9 +8,9 @@ const inter = Inter({ subsets: ["latin"] });
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <StoreProvider store={store}>
-        <body className={inter.className}>{children}</body>
-      </StoreProvider>
+      <body className={inter.className}>
+        <StoreProvider store={store}>{children}</StoreProvider>
+      </body>
     </html>
   );
 }

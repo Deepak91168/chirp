@@ -23,21 +23,21 @@ const Chat = () => {
       socket.close();
     }
   };
-  useEffect(() => {
-    if (socket) {
-      socket.onmessage = (event) => {
-        console.log("Message received: ");
-        const receivedMessage = event.data;
-        const stringWithoutSingleQuotes = receivedMessage.replace(/'/g, '"');
-        const formattedMessage = JSON.parse(stringWithoutSingleQuotes);
-        console.log("Received Message!: ", formattedMessage);
-        setReceivedMessages((prevMessages) => [
-          ...prevMessages,
-          formattedMessage,
-        ]);
-      };
-    }
-  }, [socket]);
+  // useEffect(() => {
+  //   if (socket) {
+  //     socket.onmessage = (event) => {
+  //       console.log("Message received: ");
+  //       const receivedMessage = event.data;
+  //       const stringWithoutSingleQuotes = receivedMessage.replace(/'/g, '"');
+  //       const formattedMessage = JSON.parse(stringWithoutSingleQuotes);
+  //       console.log("Received Message!: ", formattedMessage);
+  //       setReceivedMessages((prevMessages) => [
+  //         ...prevMessages,
+  //         formattedMessage,
+  //       ]);
+  //     };
+  //   }
+  // }, [socket]);
   const sendMessage = (e) => {
     e.preventDefault();
     console.log("Sending message: ", message);
@@ -52,16 +52,16 @@ const Chat = () => {
     }
   };
 
-  useEffect(() => {
-    const getChatHistory = async () => {
-      const response = await axios.get(
-        `http://localhost:8000/chat/get-chat-history?sender_email=${userEmail}&recipient_email=${recipientEmail}`
-      );
-      console.log(response.data);
-      setReceivedMessages(response.data);
-    };
-    getChatHistory();
-  }, [userEmail, recipientEmail]);
+  // useEffect(() => {
+  //   const getChatHistory = async () => {
+  //     const response = await axios.get(
+  //       `http://localhost:8000/chat/get-chat-history?sender_email=${userEmail}&recipient_email=${recipientEmail}`
+  //     );
+  //     console.log(response.data);
+  //     setReceivedMessages(response.data);
+  //   };
+  //   getChatHistory();
+  // }, [userEmail, recipientEmail]);
 
   return (
     <div className="w-full">

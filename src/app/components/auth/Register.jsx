@@ -2,8 +2,12 @@
 import React from "react";
 import OAuth from "./OAuth";
 import axios from "axios";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+
 import { useState, useEffect } from "react";
 const Register = () => {
+  const router = useRouter();
   const [fromData, setFormData] = useState({
     name: "",
     email: "",
@@ -18,14 +22,13 @@ const Register = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
+      console.log("Called!");
       const response = await axios.post(
         "http://localhost:8000/auth/sign-up",
-        fromData,
-        {
-          withCredentials: true,
-        }
+        fromData
       );
       console.log(response.data);
+      router.push("/auth/sign-in");
     } catch (error) {
       console.log(error);
     }
@@ -82,9 +85,9 @@ const Register = () => {
             </label>
 
             <div className="text-[12px] mt-4">
-              <a href="/auth/sign-in" className="link link-primary">
+              <Link href="/auth/sign-in" className="link link-primary">
                 Already have an account?
-              </a>
+              </Link>
             </div>
 
             <button

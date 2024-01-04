@@ -32,6 +32,7 @@ const store = configureStore({
     getDefaultMiddleware({
       serializableCheck: false,
     }),
+  devTools: true,
 });
 
 const persistor = persistStore(store);

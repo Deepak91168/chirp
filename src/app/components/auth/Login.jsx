@@ -9,9 +9,10 @@ import {
   signInFailure,
   signInStart,
 } from "../../redux/user/userSlice";
+
 const Login = () => {
   const dispatch = useDispatch();
-
+  const { currentUser, loading, error } = useSelector((state) => state.user);
   const [fromData, setFormData] = useState({
     email: "",
     password: "",
@@ -26,21 +27,16 @@ const Login = () => {
       dispatch(signInStart());
       const response = await axios.post(
         "http://localhost:8000/auth/login",
-        fromData,
-        {
-          withCredentials: true,
-        }
+        fromData
       );
-      if (response.data.status_code !== "200") {
-        console.log(response.data.detail);
-        dispatch(signInFailure(response.data.detail));
-      }
       console.log(response.data);
+      console.log(currentUser);
       dispatch(signInSuccess(response.data));
     } catch (error) {
       console.log(error);
       dispatch(signInFailure(error));
     }
+    
   };
 
   return (

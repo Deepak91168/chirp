@@ -1,9 +1,16 @@
+`use client`;
 import React from "react";
 import Chat from "../Chat";
 import ContactCard from "../contacts/ContactCard";
 import Image from "next/image";
 import { AiOutlineMenuUnfold } from "react-icons/ai";
+import { useSelector } from "react-redux";
+import { useState } from "react";
+import AddContact from "../contacts/AddContact";
 const Drawer = () => {
+  const { currentUser } = useSelector((state) => state.user);
+  const [userContacts, setUserContacts] = useState(currentUser.contacts);
+  // console.log(userContacts);
   return (
     <div className="drawer md:drawer-open ">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -17,7 +24,7 @@ const Drawer = () => {
         </label>
       </div>
       <div className="drawer-side border-gray-800">
-        <div className="p-2 px-4 fixed shadow-gray-900 shadow-md z-10 flex items-center bg-[#3F0071] border-slate-600 border-r-[0.5px] w-60 sm:w-[350px] lg:w-[450px] xl:w-[500px]">
+        <div className="p-2 top-0 px-4 fixed shadow-gray-900 shadow-md z-10 flex items-center bg-[#3F0071] border-slate-600 border-r-[0.5px] w-60 sm:w-[350px] lg:w-[450px] xl:w-[500px]">
           <div className="">
             <Image
               alt="Tailwind CSS Navbar component"
@@ -39,32 +46,8 @@ const Drawer = () => {
         <ul className="menu w-60 mt-[65px] p-0 sm:w-[350px] lg:w-[450px] xl:w-[500px] min-h-full bg-base-200 text-base-content overflow-y-auto">
           <ContactCard connectRecipient />
           <ContactCard />
-          <ContactCard />
-          <ContactCard />
-          <ContactCard />
-          <ContactCard />
-          <ContactCard />
-          <ContactCard />
-          <ContactCard />
-          <ContactCard />
-          <ContactCard />
-          <ContactCard />
-          <ContactCard />
-          <ContactCard />
-          <ContactCard />
-          <ContactCard />
-          <ContactCard />
-          <ContactCard />
-          <ContactCard />
-          <ContactCard />
-          <ContactCard />
-          <ContactCard />
-          <ContactCard />
-          <ContactCard />
-          <ContactCard />
-          <ContactCard />
-          <ContactCard />
-          <ContactCard />
+
+          <AddContact />
         </ul>
       </div>
     </div>

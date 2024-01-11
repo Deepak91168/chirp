@@ -116,7 +116,7 @@ const Chat = () => {
             {/* <button className="p-4 bg-green-500 text-black">Send</button> */}
           </div>
         </div>
-        <form action="" className="p-4 border-2 text-center">
+        {/* <form action="" className="p-4 border-2 text-center">
           <div>
             <label>Sender&lsquo;s Email:</label>
             <input
@@ -133,7 +133,7 @@ const Chat = () => {
           >
             make connection
           </button>
-        </form>
+        </form> */}
 
         {/* <form action="" className="p-4 mt-4 border-2 text-center">
         <div>
